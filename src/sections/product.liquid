@@ -28,6 +28,9 @@
   <h1>{{ product.title }}</h1>
   <p>{{ product.vendor }}</p>
 
+  <p data-sku><b>SKU: </b>{{current_variant.sku}}</p>
+  <p data-inventory><b>Invenotry: </b>{% if current_variant.inventory_quantity > 0 %}{{current_variant.inventory_quantity}} In Stock{% else %}Out Of Stock{% endif %}</p>
+
   <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
     <meta itemprop="priceCurrency" content="{{ shop.currency }}">
     <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">

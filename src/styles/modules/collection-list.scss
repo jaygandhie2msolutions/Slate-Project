@@ -1,0 +1,7 @@
+.template-index h2{ color:$color-heading-text;  text-align: $text-align-center;}
+.collection_image{
+	@include prefix(transition, all 0.5s, webkit spec);
+	&:hover{
+		@include prefix(transform, scale(0.8), webkit spec);
+	}
+}

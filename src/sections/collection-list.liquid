@@ -1,14 +1,15 @@
+<div class="page-width" data-section-id="{{section.id}}" data-section-type="collection-list">
 {% if section.settings.title != blank %}
   <h2>{{ section.settings.title | escape }}</h2>
 {% endif %}
-
+<div class="grid__uniform">
 {% for block in section.blocks limit: section.blocks.size %}
-  <div {{ block.shopify_attributes }}>
+  <div class="grid__item one-third" {{ block.shopify_attributes }}>
     {%- assign collection = collections[block.settings.collection] -%}
 
     <a href="{% if collection == empty %}#{% else %}{{ collection.url }}{% endif %}">
       {% if collection.image != blank %}
-        {{ collection | img_url: '480x480' | img_tag: collection.title }}
+        {{ collection | img_url: '480x480' | img_tag: collection.title, 'collection_image' }}
       {% elsif collection.products.first != blank %}
         {{ collection.products.first | img_url: '480x480' | img_tag: collection.title }}
       {% elsif collection == empty %}
@@ -26,11 +27,12 @@
     </a>
   </div>
 {% endfor %}
+</div>
 
 {% if section.blocks.size == 0 %}
   {% include 'no-blocks' %}
 {% endif %}
-
+</div>
 {% schema %}
   {
     "name": "Collection list",

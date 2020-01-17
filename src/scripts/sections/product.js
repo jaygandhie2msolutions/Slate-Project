@@ -19,7 +19,9 @@ theme.Product = (function() {
     productJson: '[data-product-json]',
     productPrice: '[data-product-price]',
     productThumbs: '[data-product-single-thumbnail]',
-    singleOptionSelector: '[data-single-option-selector]'
+    singleOptionSelector: '[data-single-option-selector]',
+    sku:'[data-sku]',
+    inventory:'[data-inventory]'
   };
 
   /**
@@ -71,6 +73,7 @@ theme.Product = (function() {
      * @param {boolean} enabled - Decides whether cart is enabled or disabled
      * @param {string} text - Updates the text notification content of the cart
      */
+    
     updateAddToCartState: function(evt) {
       var variant = evt.variant;
 
@@ -113,6 +116,13 @@ theme.Product = (function() {
         $comparePrice.html('');
         $compareEls.addClass('hide');
       }
+
+       $(selectors.sku, this.$container).html("<b>SKU: </b>"+variant.sku);
+       if(variant.inventory_quantity > 0){
+        $(selectors.inventory, this.$container).html("<b>Inventory: </b>"+variant.inventory_quantity+" In Stock");
+       }else{
+        $(selectors.inventory, this.$container).html("<b>Inventory: </b>"+"Out Of Stock");
+       }
     },
 
     /**
